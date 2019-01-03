@@ -6,29 +6,26 @@ class Solution:
         :rtype: List[List[int]]
                 """
         res=list()
-        #print len(nums)
-        if len(nums)==0:
-            return res
         if len(nums)<3:
             return res
         else:
-            if len(nums)==3:
-                if nums[0]+nums[1]+nums[2] == 0:
-                    res.append(nums)
-                    return res
-                else:
-                    return res
-            else:
-                for i in range(0,len(nums)-2):
-                    for j in range(i+1,len(nums)-1):
-                        for k in range(j+1,len(nums)):
-                            if nums[i]+nums[j]+nums[k] == 0 :
-                                su = list((nums[i],nums[j],nums[k]))
-                                res.append(su)
-                #print res
-                for i in range(len(res)):
+            nums.sort()
+            for i in range(0,len(nums)-2):
+                j = i+1
+                k = len(nums)-1
+                while j<k:
+                    if nums[i]+nums[j]+nums[k] == 0:
+                        su = list((nums[i],nums[j],nums[k]))
+                        res.append(su)
+                        j+=1
+                        k-=1
+                    elif nums[i]+nums[j]+nums[k] < 0:
+                        j+=1
+                    else:
+                        k-=1
+            #return res
+            for i in range(len(res)):
                     res[i].sort()
-                #print res
-                res.sort()
-                new_res = list(res for res,_ in itertools.groupby(res))
-                return new_res
+            res.sort()
+            new_res = list(res for res,_ in itertools.groupby(res))
+            return new_res

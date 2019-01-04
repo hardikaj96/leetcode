@@ -1,0 +1,53 @@
+class Solution:
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """ 
+                    
+        for i in range(3):
+            for j in range(3):
+                k=i*3
+                l=j*3
+                check =[0,0,0,0,0,0,0,0,0]
+                for m in range(k,k+3):
+                    for n in range(l,l+3):
+                        x = board[m][n]
+                        if x in ["1","2","3","4","5","6","7","8","9"]:
+                            #print (x)
+                            y=int(x)-1
+                            #print(check)
+                            check[y]=check[y]+1                
+                            #print (check)
+                            if check[y] == 2:
+                                #print (check)
+                                #print("false")
+                                return False
+
+
+
+        for i in range(9):
+            check =[0,0,0,0,0,0,0,0,0]
+            for j in range(9):
+                x = board[i][j]
+                if x in ["1","2","3","4","5","6","7","8","9"]:
+                    #print (x)
+                    check[int(x)-1]+=1
+                    if check[int(x)-1] == 2:
+                        #print("false")
+                        return False
+
+        #print("column")
+        stop =0
+        for i in range(9):
+            check =[0,0,0,0,0,0,0,0,0]
+            for j in range(9):
+                x = board[j][i]
+                if x in ["1","2","3","4","5","6","7","8","9"]:
+                    #print (x)
+                    check[int(x)-1]+=1
+                    if check[int(x)-1] == 2:
+                        #print("false")
+                        return False
+        
+        return True

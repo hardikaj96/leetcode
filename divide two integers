@@ -5,6 +5,8 @@ class Solution:
         :type divisor: int
         :rtype: int
         """
+        if dividend == -2147483648 and divisor == -1: # the only overflow case 
+            return 2147483647
         nf=0
         if dividend<0:
             dividend*=-1
@@ -15,11 +17,16 @@ class Solution:
             df=1
         count=0
         while dividend>=divisor:
-            dividend-=divisor
-            count+=1
+            tmp = divisor
+            tmp_count = 1
+            while tmp+tmp<=dividend:
+                tmp_count+=tmp_count
+                tmp+=tmp
+            dividend-=tmp
+            count+=tmp_count
 
         if nf==1:
             count*=-1
         if df==1:
             count*=-1
-        return count
+        return min(max(count, -pow(2,31)),pow(2,31)-1)

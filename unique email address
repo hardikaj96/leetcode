@@ -1,0 +1,27 @@
+class Solution:
+    def numUniqueEmails(self, emails):
+        """
+        :type emails: List[str]
+        :rtype: int
+        """
+        #emails = ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
+        result =[]
+        count = 0
+        for i in range(len(emails)):
+            temp = emails[i]
+            indexat = temp.index('@')
+            localname = temp[:indexat]
+            domainname = temp[indexat:]
+            #print (localname)
+            #print (domainname)
+            if '+' in localname:
+                localname = localname[:localname.index('+')]
+            localname = localname.replace(".","")
+            #print (localname)
+            res = localname+domainname
+            #print (res)
+            if res not in result:
+                result.append(res)
+                count+=1
+        #print (result)
+        return count

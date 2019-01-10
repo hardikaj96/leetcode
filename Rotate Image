@@ -1,0 +1,16 @@
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+
+        temp2 = []
+        for i in range(0,len(matrix)):
+            temp1 = []
+            for j in range(0,len(matrix)):
+                temp1.append(matrix[len(matrix)-j-1][i])
+            temp2.append(temp1)
+        for i in range(0,len(matrix)):
+            matrix[i] = temp2[i]
+        

@@ -1,0 +1,21 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        temp = list(strs)
+        dic = {}
+        tempflag = [0]*len(temp)
+        for i in range(0,len(strs)):
+            temp[i]=''.join(sorted(temp[i]))
+            if temp[i] in dic.keys(): 
+                temp1 = dic[temp[i]]
+                temp1.append(''.join(strs[i]))
+                dic[temp[i]] = temp1
+            else:
+                dic[temp[i]] = list(strs[i].split(' '))
+        result = []
+        for key in dic:
+            result.append(dic[key])
+        return result

@@ -1,0 +1,49 @@
+def getnum(n):
+    if n=='0': return 0
+    if n=='1': return 1
+    if n=='2': return 2
+    if n=='3': return 3
+    if n=='4': return 4
+    if n=='5': return 5
+    if n=='6': return 6
+    if n=='7': return 7
+    if n=='8': return 8
+    if n=='9': return 9
+    
+def putnum(n):
+    if n==0: return "0"
+    if n==1: return "1"
+    if n==2: return "2"
+    if n==3: return "3"
+    if n==4: return "4"
+    if n==5: return "5"
+    if n==6: return "6"
+    if n==7: return "7"
+    if n==8: return "8"
+    if n==9: return "9"
+
+num1 = "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999964165415616566156164156565465623174132326467413245465956265989899898989898989898989898989898989898989898989894566132131684454549849743986546546541651231654641531354654947398978898979879878998798798"
+num2 = "99999999999999999999999999999999999999999999999341232132165465213616541231314654153231654132651465958998989898989898989898988989887987987987949984897465498746598749846456498798496589489749879879879878978979798794984798749874948974974984984984689499897989"
+n1 = 0
+for i in range(len(num1)):
+    temp = getnum(num1[i])
+    n1 = n1*10 + temp
+n2 = 0
+for i in range(len(num2)):
+    temp = getnum(num2[i])
+    n2 = n2*10 + temp
+
+res = n1*n2
+rev= 0
+while res>0:
+    rem = res%10
+    rev = rev*10 + rem
+    res = res//10
+    
+result = ""
+while rev>0:
+    rem = rev%10
+    rev = rev//10
+    print(rem)
+    result = result + putnum(rem)
+print (result)

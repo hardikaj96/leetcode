@@ -1,0 +1,21 @@
+class Solution(object):
+    def bulbSwitch(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n==2:
+            return 1
+        on = n
+        bulb = [1]*n
+        for i in range(2,n+1):
+            j=i-1
+            while(j<n):
+                if(bulb[j]==0):
+                    on+=1
+                    bulb[j]=1
+                else:
+                    on-=1
+                    bulb[j]=0
+                j = j +i
+        return on

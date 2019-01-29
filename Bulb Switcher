@@ -19,3 +19,18 @@ class Solution(object):
                     bulb[j]=0
                 j = j +i
         return on
+        
+class Solution(object):
+    def bulbSwitch(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1 or n==0:
+            return n
+        sq = 0
+        s = 0
+        while sq<=n:
+            sq = s*s
+            s+=1
+        return s-2

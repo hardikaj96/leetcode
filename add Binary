@@ -1,0 +1,52 @@
+class Solution:
+    def addBinary(self, a: 'str', b: 'str') -> 'str':
+        n1 = int(a)
+        n2 = int(b)
+        result = []
+        carry = 0
+        ans = "0"
+        if n1==0 and n2==0:
+            return "0"
+        while n1 != 0 or n2 != 0:
+            a = n1%10
+            b = n2%10
+            c = a+b+carry
+            carry = 0
+            if c==2:
+                carry = 1
+                c = 0
+            if c==3:
+                carry =1
+                c=1
+            result.insert(0,c)
+
+            n1 = n1//10
+            n2=n2//10
+        while n1!=0:
+            a = n1%10
+            c = a+carry
+
+            carry = 0
+            if c==2:
+                carry = 1
+                c = 0
+            if c==3:
+                carry =1
+                c=1
+            result.insert(0,c)
+            n1 = n1//10
+        while n2!=0:
+            a = n2%10
+            c = a+carry
+            carry = 0
+            if c==2:
+                carry = 1
+                c = 0
+            if c==3:
+                carry =1
+                c=1
+            result.insert(0,c)
+            n2 = n2//10
+        if carry==1:
+            result.insert(0,1)
+        return ''.join(map(str, result))

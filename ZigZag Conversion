@@ -1,0 +1,32 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if len(s)==0:
+            return ""
+        if len(s)<=numRows:
+            return s
+        if numRows==1:
+            return s
+        res = [None]*numRows
+        i=0
+        while i<len(s):
+            j=0
+            while j<numRows and i<len(s):
+                if not res[j]:
+                    res[j]=[s[i]]
+                else:
+                    res[j].append(s[i])
+                j+=1
+                i+=1
+            j=numRows-2
+            while j>0 and i<len(s):
+                res[j].append(s[i])
+                j-=1
+                i+=1
+        res = ''.join(str(r) for v in res for r in v)
+        return res
+        

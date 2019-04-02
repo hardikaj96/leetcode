@@ -1,0 +1,30 @@
+arr =[6,7,0,1,2,3,4]
+def binarySearch (arr, l, r, x): 
+    print(l,r)
+    if r >= l: 
+        mid = int(l + (r - l)/2)
+        print("mid",mid,arr[mid],"left",l,arr[l],"right",r,arr[r],x)
+        if arr[mid] == x: 
+            return mid 
+        elif arr[mid] > x and x >= arr[l]: 
+            print(arr[mid],"rr")
+            return binarySearch(arr, l, mid-1, x)
+        elif arr[l] <=x and  arr[mid] < x : 
+            print(arr[mid],"vv")
+            return binarySearch(arr, l, mid-1, x) 
+        elif arr[mid]>x and x<arr[r] and x<= arr[l]:
+            print(arr[mid],"uu")
+            return binarySearch(arr, l, mid-1, x) 
+        elif arr[mid]>x and x<=arr[r]:
+            print(arr[mid],"ss")
+            return binarySearch(arr, mid + 1, r, x) 
+        elif arr[mid]<x and x<=arr[r] and x<= arr[l]:
+            print(arr[mid],"tt")
+            return binarySearch(arr, mid+1, r, x) 
+        elif arr[mid]<x and x<arr[r]:
+            print(arr[mid],"ww")
+            return binarySearch(arr, l, mid-1, x) 
+    else: 
+        return -1
+  
+print(binarySearch(arr,0,len(arr)-1,4))

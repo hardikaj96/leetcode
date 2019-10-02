@@ -1,0 +1,20 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if len(strs) <= 0:
+            return ''
+        max_len_prefix = ''
+        index_prefix = 0
+        while True and index_prefix<len(strs[0]):
+            current_char = strs[0][index_prefix]
+            end_flag = True
+            for each_string in strs:
+                if index_prefix >= len(each_string):
+                    return max_len_prefix
+                if current_char != each_string[index_prefix]:
+                    end_flag = False
+                    break
+            if not end_flag:
+                break
+            index_prefix += 1
+            max_len_prefix = max_len_prefix + current_char
+        return max_len_prefix
